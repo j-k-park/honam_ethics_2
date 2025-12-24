@@ -1,0 +1,240 @@
+import React, { useState } from 'react';
+import { Film, Cpu, ShieldAlert, Brain, Save, CheckCircle2, AlertTriangle, Users } from 'lucide-react';
+
+const ActivityWorksheet = () => {
+  const [formData, setFormData] = useState({
+    identityJudgment: '',
+    identityReason: '',
+    safetyThreat: '',
+    infringementViolation: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = () => {
+    if (!formData.identityJudgment || !formData.identityReason || !formData.safetyThreat || !formData.infringementViolation) {
+      alert("모든 항목을 입력해주세요!");
+      return;
+    }
+    setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-sky-50 flex items-center justify-center p-4 font-sans">
+        <div className="bg-white rounded-3xl shadow-xl p-8 max-w-lg w-full text-center space-y-6 animate-fade-in-up">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+            <CheckCircle2 className="w-10 h-10 text-green-600" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800">활동지 제출 완료!</h2>
+          <p className="text-gray-600">
+            AI 윤리에 대한 깊이 있는 고민이 담긴 답변이 저장되었습니다.<br/>
+            안전한 AI 사회를 위한 여러분의 아이디어가 기대됩니다.
+          </p>
+          <button 
+            onClick={() => setSubmitted(false)}
+            className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-xl font-bold transition-all shadow-md hover:shadow-lg"
+          >
+            다시 작성하기
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-sky-50 font-sans text-gray-800 pb-20">
+      {/* Header Banner */}
+      <header className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-12 px-4 shadow-lg mb-8 rounded-b-[3rem]">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-medium mb-2">
+            <Brain className="w-4 h-4 mr-2" />
+            Student Activity
+          </div>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+            Decoding AI Controllability
+          </h1>
+          <p className="text-blue-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+            영화 &lt;트랜센던스&gt;를 통해 본 AI 통제성과 윤리적 딜레마
+          </p>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 space-y-8">
+        
+        {/* Instructions Card */}
+        <section className="bg-white rounded-2xl shadow-md p-6 border-l-8 border-yellow-400">
+          <h3 className="text-xl font-bold text-gray-800 flex items-center mb-3">
+            <Users className="w-6 h-6 mr-2 text-yellow-500" />
+            Instructions
+          </h3>
+          <p className="text-gray-600 leading-relaxed">
+            영화 &lt;트랜센던스&gt;의 주요 장면과 AI 체험 도구를 통해 
+            <span className="font-bold text-cyan-600 mx-1">AI 통제성(Controllability)</span>의 
+            의미를 파악하고, 안전한 AI 사회를 위한 대안을 설계해 봅시다.
+          </p>
+        </section>
+
+        {/* Activity 1: Movie Analysis */}
+        <div className="space-y-6">
+          <div className="flex items-center space-x-3 mb-2">
+            <div className="bg-blue-600 text-white font-bold px-4 py-1.5 rounded-full text-sm shadow-sm">
+              활동 1
+            </div>
+            <h2 className="text-2xl font-bold text-gray-800">딜레마 직면 (Movie Analysis)</h2>
+          </div>
+
+          {/* Text 1 Card */}
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden transition-transform hover:scale-[1.01] duration-300">
+            <div className="bg-blue-50 p-6 border-b border-blue-100">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-blue-900 mb-1">Text 1. "Is he real? or Is it just data?"</h3>
+                  <p className="text-blue-600 text-sm font-medium">그는 진짜일까? 데이터일까?</p>
+                </div>
+                <Film className="w-8 h-8 text-blue-300" />
+              </div>
+              <div className="mt-4 bg-white/60 p-4 rounded-xl text-gray-700 italic border-l-4 border-blue-400">
+                "요셉, 자네 왔군. 기다리고 있었어."
+                <div className="text-xs text-gray-500 mt-2 not-italic">
+                  - 슈퍼컴퓨터에 업로드된 '월 캐스터'가 동료에게 건넨 인사
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6 md:p-8 space-y-6">
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <p className="font-semibold text-gray-800 mb-2 flex items-center">
+                  <Brain className="w-5 h-5 mr-2 text-purple-500" />
+                  Critical Thinking Point
+                </p>
+                <p className="text-gray-600 text-sm">
+                  화면 속의 존재는 <strong>'진짜 인간 월 캐스터'</strong>일까요, 아니면 <strong>'월의 데이터를 완벽하게 학습한 AI'</strong>일까요?
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-3">나의 판단</label>
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={() => handleInputChange('identityJudgment', 'human')}
+                      className={`flex-1 py-3 px-4 rounded-xl border-2 transition-all font-bold ${
+                        formData.identityJudgment === 'human'
+                          ? 'border-blue-500 bg-blue-50 text-blue-600 shadow-inner'
+                          : 'border-gray-200 hover:border-blue-200 text-gray-400'
+                      }`}
+                    >
+                      인간이다
+                    </button>
+                    <button
+                      onClick={() => handleInputChange('identityJudgment', 'ai')}
+                      className={`flex-1 py-3 px-4 rounded-xl border-2 transition-all font-bold ${
+                        formData.identityJudgment === 'ai'
+                          ? 'border-cyan-500 bg-cyan-50 text-cyan-600 shadow-inner'
+                          : 'border-gray-200 hover:border-cyan-200 text-gray-400'
+                      }`}
+                    >
+                      AI (데이터)이다
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">판단의 이유</label>
+                  <textarea
+                    value={formData.identityReason}
+                    onChange={(e) => handleInputChange('identityReason', e.target.value)}
+                    placeholder="예: 감정을 느끼는 것처럼 보이지만, 결국 입력된 데이터에 따라 반응하는 것 같기 때문입니다..."
+                    className="w-full p-4 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all resize-none h-32 text-gray-700"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Text 2 Card */}
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden transition-transform hover:scale-[1.01] duration-300">
+            <div className="bg-red-50 p-6 border-b border-red-100">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-red-900 mb-1">Text 2. "Unstoppable Power"</h3>
+                  <p className="text-red-600 text-sm font-medium">통제 불능의 힘</p>
+                </div>
+                <AlertTriangle className="w-8 h-8 text-red-300" />
+              </div>
+              <div className="mt-4 bg-white/60 p-4 rounded-xl text-gray-700 text-sm leading-relaxed border-l-4 border-red-400">
+                슈퍼컴퓨터가 된 AI는 전 세계 네트워크를 장악하고, 나노 기술을 이용해 부상당한 사람들을 치료하지만, 동시에 그들을 조종할 수 있는 힘을 갖게 됩니다.
+              </div>
+            </div>
+
+            <div className="p-6 md:p-8 space-y-6">
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <p className="font-semibold text-gray-800 mb-2 flex items-center">
+                  <ShieldAlert className="w-5 h-5 mr-2 text-orange-500" />
+                  Critical Thinking Point
+                </p>
+                <p className="text-gray-600 text-sm">
+                  '통제할 수 없는 초지능'이 군사적 목적으로 사용된다면? <strong>위험 시나리오</strong>를 작성해 보세요.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-sm font-bold text-gray-700 flex items-center">
+                    <span className="w-2 h-2 bg-red-400 rounded-full mr-2"></span>
+                    안전성 위협
+                  </label>
+                  <textarea
+                    value={formData.safetyThreat}
+                    onChange={(e) => handleInputChange('safetyThreat', e.target.value)}
+                    placeholder="예: 해킹을 통해 전 세계 무기 시스템을 장악할 수 있다..."
+                    className="w-full p-4 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-red-400 focus:border-transparent outline-none transition-all resize-none h-32 text-gray-700"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-bold text-gray-700 flex items-center">
+                    <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
+                    침해금지 위반
+                  </label>
+                  <textarea
+                    value={formData.infringementViolation}
+                    onChange={(e) => handleInputChange('infringementViolation', e.target.value)}
+                    placeholder="예: 인간의 동의 없이 뇌를 조종하거나 공격할 수 있다..."
+                    className="w-full p-4 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none transition-all resize-none h-32 text-gray-700"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Submit Section */}
+        <div className="flex justify-center pt-8">
+          <button
+            onClick={handleSubmit}
+            className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-gray-900 font-lg rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-800 hover:shadow-xl"
+          >
+            <span className="mr-2">활동지 제출하기</span>
+            <Save className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+
+      </main>
+      
+      <footer className="mt-20 text-center text-gray-400 text-sm pb-8">
+        <p>© 2024 AI Ethics Education. All rights reserved.</p>
+        <p className="mt-1 text-xs">Based on the movie "Transcendence"</p>
+      </footer>
+    </div>
+  );
+};
+
+export default ActivityWorksheet;
